@@ -1,0 +1,600 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+img {
+  display: inline-block;
+}
+
+ul {
+  display: block;
+  padding-inline-start: 0px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+ol {
+  padding-inline-start: 0px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+li {
+  font-size: 1.4rem;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #121212;
+}
+
+@mixin container-style {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 80px 20px;
+}
+
+@mixin container-title($titleColor: white) {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+  position: relative;
+  h2 {
+    display: inline-block;
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: $titleColor;
+  }
+  h2::before,
+  h2::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    display: inline-block;
+    background-color: $titleColor;
+    height: 1px;
+    width: 28%;
+  }
+  h2::before {
+    left: 0;
+  }
+  h2::after {
+    right: 0;
+  }
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  position: fixed;
+  height: 100vh;
+  width: 300px;
+  background-color: #fff;
+  padding: 40px 50px 30px 45px;
+  &_menu {
+    &_logo {
+      margin-bottom: 30px;
+    }
+    &_nav ul {
+      margin-bottom: 40px;
+    }
+    &_nav li {
+      padding: 8px 0;
+    }
+    &_nav li:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.container {
+  position: relative;
+  left: 300px;
+  width: calc(100% - 300px);
+  overflow: auto;
+  //映像
+  &_video {
+    height: 80vh;
+    overflow: hidden;
+    &_area {
+      position: fixed;
+      z-index: -1;
+      top: 0;
+      right: 0;
+      left: 300px;
+      bottom: 0;
+      overflow: hidden;
+      video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  // 建築事例を紹介
+  &_project {
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+    &_wrapper {
+      @include container-style;
+      &_title {
+        @include container-title;
+      }
+      &_list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        &_img {
+          position: relative;
+          width: 47%;
+          height: auto;
+          border: solid 1px #fff;
+          margin-bottom: 50px;
+        }
+        &_img a::after {
+          content: "";
+          box-shadow: 0 -30px 15px -1px #2e2e2e inset;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 1;
+        }
+        &_img p {
+          position: absolute;
+          color: #fff;
+          font-size: 1.2rem;
+          left: 7px;
+          bottom: 4px;
+          z-index: 2;
+        }
+        &_img:nth-child(3),
+        &_img:last-child {
+          margin-bottom: 0px;
+        }
+      }
+    }
+  }
+  //明るいHOUSEの特徴
+  &_feature {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding-bottom: 80px;
+    &_wrapper {
+      @include container-style;
+      &_title {
+        @include container-title;
+      }
+      &_list li {
+        width: 30%;
+      }
+      &_list li a {
+        width: 100%;
+        border-radius: 50%;
+        border: solid 3px#fff;
+        position: relative;
+        overflow: hidden;
+      }
+      &_list li::before {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        opacity: 0.3;
+        left: -100%;
+        transition: 0.5s;
+      }
+      &_list li:hover::before {
+        left: 0;
+      }
+      &_list {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        &_item {
+          text-align: center;
+          &_text_title {
+            font-weight: bold;
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+          }
+        }
+        &_item a {
+          display: block;
+          text-decoration: none;
+          padding: 50% 0;
+          margin-bottom: 15px;
+          color: #fff;
+        }
+        &_item p {
+          color: #fff;
+        }
+      }
+    }
+  }
+  // 家ができるまでの流れ
+  &_flow {
+    background-color: #fff;
+    &_wrapper {
+      @include container-style;
+      &_title {
+        @include container-title(#121212);
+        color: #2e2e2e;
+      }
+      &_text {
+        font-size: 1.6rem;
+      }
+      &_step {
+        display: flex;
+        margin-top: 60px;
+        &_figure {
+          position: relative;
+        }
+        // 図形下の黄色い棒線を作成
+        &_figure::before {
+          content: "";
+          width: 50px;
+          height: 600px;
+          background-color: #ffdd00;
+          position: absolute;
+          top: 0;
+          left: 75px;
+        }
+        // 図形の四角い部分を作成
+        &_figure li {
+          width: 200px;
+          height: 80px;
+          line-height: 80px;
+          background-color: #414141;
+          color: #fff;
+          font-size: 1.4rem;
+          margin-bottom: 60px;
+          position: relative;
+          text-align: center;
+        }
+        &_figure li::before {
+          content: "";
+          border-top: 30px solid #414141;
+          border-right: 100px solid transparent;
+          border-left: 100px solid transparent;
+          position: absolute;
+          top: 80px;
+          right: 0;
+          left: 0;
+        }
+        &_description {
+          margin-left: 10%;
+        }
+        &_description dt {
+          border-bottom: solid 1px #121212;
+          font-size: 2rem;
+          position: relative;
+          padding-bottom: 8px;
+          margin-bottom: 10px;
+        }
+        // 丸数字
+        &_description dt span {
+          display: inline-block;
+          height: 35px;
+          width: 35px;
+          border-radius: 50%;
+          background-color: #414141;
+          text-align: center;
+          color: #fff;
+          font-size: 1.6rem;
+          line-height: 35px;
+          position: absolute;
+          left: -45px;
+        }
+        &_description dd {
+          font-size: 1.6rem;
+          margin-bottom: 44px;
+        }
+        &_description dd:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  // お問合せ
+  &_contact {
+    background-color: #fff;
+    &_wrapper {
+      @include container-style;
+      &_title {
+        @include container-title(#121212);
+        color: #2e2e2e;
+      }
+      &_text {
+        font-size: 1.6rem;
+      }
+      &_link {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 60px;
+        &_item {
+          width: 30%;
+          border: 1px solid #121212;
+          text-align: center;
+          padding: 50px 0;
+          font-size: 1.4rem;
+          position: relative;
+        }
+        &_item:hover {
+          outline: 3px solid #121212;
+        }
+        &_item::before {
+          content: "";
+          border-top: 20px solid transparent;
+          border-right: 20px solid #121212;
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          margin: 4px;
+        }
+      }
+    }
+  }
+}
+// footer
+.footer {
+  width: calc(100% - 300px);
+  position: relative;
+  left: 300px;
+  background-color: #121212;
+  color: #fff;
+  padding: 20px 0;
+  &_to-top {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #121212;
+  }
+  &_to-top::after {
+    content: "";
+    border-bottom: 7px solid #fff;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    position: relative;
+    left: 17px;
+    top: 3.5px;
+  }
+  &_menu {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0 60px 0;
+  }
+  &_menu li {
+    border-right: solid 1px #fff;
+    padding: 0 20px;
+  }
+  &_menu li:last-child {
+    border-right: none;
+  }
+  &_menu li a {
+    color: #fff;
+  }
+  &_copyright {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .container_project_wrapper_title h2,
+  .container_feature_wrapper_title h2,
+  .container_flow_wrapper_title h2,
+  .container_contact_wrapper_title h2 {
+    font-size: 1.6rem;
+  }
+  .header {
+    width: 100%;
+    height: 72px;
+    z-index: 10;
+    padding: 0;
+    &_menu {
+      height: 100%;
+      position: relative;
+      top: 10px;
+      left: 18px;
+      &_logo {
+        width: 180px;
+        position: fixed;
+      }
+      &_nav {
+        background: #fff;
+        width: 300px;
+        height: 100%;
+        position: fixed;
+        padding: 25px;
+        top: 0;
+        left: -300px;
+        opacity: 0;
+        transition: 0.5s;
+      }
+    }
+  }
+
+  .hamburger {
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    top: 24px;
+    right: 18px;
+    cursor: pointer;
+    z-index: 99;
+  }
+
+  .hamburger span {
+    width: 30px;
+    height: 2px;
+    background-color: #121212;
+    position: relative;
+    transition: ease 0.4s;
+    display: block;
+  }
+  .hamburger span:nth-child(1) {
+    top: 0;
+  }
+  .hamburger span:nth-child(2) {
+    top: 8px;
+  }
+  .hamburger span:nth-child(3) {
+    top: 16px;
+  }
+  .header {
+    &_menu {
+      &.open {
+        width: 300px;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: white;
+      }
+      &_nav.open {
+        display: block;
+        left: 0;
+        opacity: 1;
+      }
+    }
+  }
+
+  .hamburger.open span {
+    background-color: #fff;
+  }
+  .hamburger.open span:nth-child(1) {
+    transform: translateY(10px) rotate(-315deg);
+  }
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.open span:nth-child(3) {
+    transform: translateY(-10px) rotate(315deg);
+  }
+
+  .mask {
+    display: none;
+  }
+
+  .mask.open {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    top: 0;
+    left: 300px;
+    display: block;
+    z-index: 90;
+  }
+
+  .container {
+    left: 0px;
+    width: 100%;
+    &_video {
+      height: 80vh;
+      &_area {
+        height: 520px;
+        width: 95%;
+        top: 72px;
+        margin: 0 auto;
+        left: 0;
+      }
+    }
+    &_project {
+      &_wrapper {
+        padding: 60px 20px;
+        &_title {
+          margin-bottom: 30px;
+        }
+        &_list {
+          &_img {
+            width: 100%;
+            margin-bottom: 30px;
+          }
+          &_img:nth-child(3) {
+            margin-bottom: 30px;
+          }
+        }
+      }
+    }
+    &_feature {
+      padding-bottom: 60px;
+      &_wrapper {
+        padding: 60px 20px;
+        &_title {
+          margin-bottom: 30px;
+        }
+        &_list {
+          &_item a {
+            padding: calc(50% - 11px) 0;
+          }
+        }
+      }
+    }
+    &_flow {
+      &_wrapper {
+        padding: 60px 20px;
+        &_title {
+          margin-bottom: 30px;
+        }
+        &_step {
+          flex-direction: column;
+          margin-top: 30px;
+          &_figure li {
+            margin-left: auto;
+            margin-right: auto;
+            width: calc(100vw - 80px);
+          }
+          &_figure::before {
+            left: calc((100vw - 85px) / 2);
+          }
+          &_figure li::before {
+            border-left: calc(50vw - 40px) solid transparent;
+            border-right: calc(50vw - 40px) solid transparent;
+          }
+          &_description {
+            margin-left: 50px;
+          }
+        }
+      }
+    }
+    &_contact {
+      &_wrapper {
+        padding: 60px 20px;
+        &_link {
+          margin-top: 30px;
+          flex-direction: column;
+          align-items: center;
+          &_item {
+            margin: 20px 0 0 0;
+          }
+        }
+        &_title {
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+  .footer {
+    width: 100%;
+    left: 0;
+  }
+}
