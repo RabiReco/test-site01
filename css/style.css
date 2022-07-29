@@ -636,6 +636,7 @@ a {
     align-items: center;
   }
   .container_contact_wrapper_link_item {
+    width: 60%;
     margin: 20px 0 0 0;
   }
   .container_contact_wrapper_title {
